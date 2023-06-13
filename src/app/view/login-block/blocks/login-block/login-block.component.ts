@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class LoginBlockComponent {
 
+  onLogin(value: any) {
+    console.log('OnLogin', value)
+  }
+
 }

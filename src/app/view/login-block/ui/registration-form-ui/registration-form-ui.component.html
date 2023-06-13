@@ -1,7 +1,27 @@
 <mat-card>
-  <mat-card-title class="title">Login</mat-card-title>
+  <mat-card-title class="title">Create an account</mat-card-title>
   <mat-card-content>
-    <form (ngSubmit)="onSubmit()">
+    <form>
+      <div class="names">
+        <mat-form-field appearance="outline">
+          <input type="text" matInput placeholder="First Name"
+                 [formControl]="firstNameFormControl"
+                 [errorStateMatcher]="matcher">
+          <mat-error *ngIf="firstNameFormControl.hasError('required')">
+            First Name is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <input type="text" matInput placeholder="Last Name"
+                 [formControl]="lastNameFormControl"
+                 [errorStateMatcher]="matcher">
+          <mat-error *ngIf="lastNameFormControl.hasError('required')">
+            Last Name is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
       <mat-form-field appearance="outline">
         <input type="email" matInput placeholder="Email"
                [formControl]="emailFormControl"
@@ -25,11 +45,10 @@
           Password must be at least 6 characters long.
         </mat-error>
       </mat-form-field>
-        <a [routerLink]="['../registration']" >Don't have an account yet?</a>
+      <a [routerLink]="['../login']" >Already have an account?</a>
       <div class="button">
         <button [disabled]="formGroup.invalid" mat-raised-button color="primary" type="submit">Submit</button>
       </div>
     </form>
   </mat-card-content>
 </mat-card>
-
