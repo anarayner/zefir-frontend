@@ -1,1 +1,8 @@
-<app-login-form-ui (login)="onLogin($event)"></app-login-form-ui>
+<app-login-form-ui
+  [formError]="(error$ | async)!"
+  (login)="onLogin($event)"
+></app-login-form-ui>
+
+<button (click)="testProfile()">TEST PROFILE LINK</button>
+<button (click)="refresh()">TEST REFRESH</button>
+

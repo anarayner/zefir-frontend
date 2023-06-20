@@ -9,7 +9,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 import { RegistrationBlockComponent } from './blocks/registration-block/registration-block.component';
 import { RegistrationFormUiComponent } from './ui/registration-form-ui/registration-form-ui.component';
-
+import {AuthStoreModule} from "../../store/auth-store/auth-store.module";
 
 
 @NgModule({
@@ -21,6 +21,7 @@ import { RegistrationFormUiComponent } from './ui/registration-form-ui/registrat
   ],
   imports: [
     CommonModule,
+    AuthStoreModule,
     MatInputModule,
     MatCardModule,
     ReactiveFormsModule,

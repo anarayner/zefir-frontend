@@ -1,7 +1,8 @@
 <mat-card>
   <mat-card-title class="title">Login</mat-card-title>
   <mat-card-content>
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" (input)="onFormChange()"
+    >
       <mat-form-field appearance="outline">
         <input type="email" matInput placeholder="Email"
                [formControl]="emailFormControl"
@@ -27,9 +28,10 @@
       </mat-form-field>
         <a [routerLink]="['../registration']" >Don't have an account yet?</a>
       <div class="button">
-        <button [disabled]="formGroup.invalid" mat-raised-button color="primary" type="submit">Submit</button>
+        <button [disabled]="disabled || formGroup.invalid || !!formError" mat-raised-button color="primary" type="submit">Submit</button>
       </div>
     </form>
   </mat-card-content>
 </mat-card>
+
 

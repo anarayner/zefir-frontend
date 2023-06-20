@@ -1,7 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthErrorStateMatcher} from "../helpers/formErrors";
-import {Router} from "@angular/router";
 
 
 @Component({
@@ -12,6 +11,9 @@ import {Router} from "@angular/router";
 export class LoginFormUiComponent implements OnInit{
 
   formGroup!: FormGroup;
+  // @ts-ignore
+  @Input() formError: string;
+  @Input() disabled: boolean = false;
   @Output() login = new EventEmitter()
 
   emailFormControl = new FormControl('',
@@ -31,8 +33,12 @@ export class LoginFormUiComponent implements OnInit{
   }
 
   onSubmit(){
-    console.log(this.formGroup.value)
+    // console.log(this.formGroup.value)
     this.login.emit(this.formGroup.value)
+  }
+
+  onFormChange() {
+    this.formError = '';
   }
 
 }
