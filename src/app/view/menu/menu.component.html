@@ -1,0 +1,9 @@
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item routerLink="profile" *ngIf="isAuth$ | async">Профиль</button>
+  <button mat-menu-item (click)="onLogout()" *ngIf="isAuth$ | async">Выйти</button>
+  <button mat-menu-item routerLink="auth/login" *ngIf="!(isAuth$ | async)">Войти</button>
+</mat-menu>
+
+<button mat-icon-button [matMenuTriggerFor]="appMenu" class="icon">
+  <mat-icon>person_outline</mat-icon>
+</button>

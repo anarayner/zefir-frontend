@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomePageComponent } from './pages/home-page/home-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import {RouterModule} from "@angular/router";
-import {HeaderBlockModule} from "../../view/header-block/header-block.module";
-
-
 
 @NgModule({
   declarations: [
-    HomePageComponent
+    ProfilePageComponent
   ],
   imports: [
     CommonModule,
@@ -16,10 +13,9 @@ import {HeaderBlockModule} from "../../view/header-block/header-block.module";
       {
         path: '',
         pathMatch: 'full',
-        component: HomePageComponent
+        component: ProfilePageComponent
       }
     ]),
-    HeaderBlockModule
   ]
 })
-export class HomeModule { }
+export class ProfileModule { }

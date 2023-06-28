@@ -16,5 +16,11 @@ export const loginFailed = createAction('[Auth] login failed',
 export const initAuth = createAction(
   '[Auth] Init Auth');
 
+export const logout = createAction('[Auth] logout');
+
 export const logoutSuccess = createAction(
   '[Auth] logout success');
+
+export const extractLoginData = createAction(
+  '[Admin Auth] extract login data'
+);

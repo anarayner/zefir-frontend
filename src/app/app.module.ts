@@ -10,6 +10,7 @@ import { StoreRouterConnectingModule} from '@ngrx/router-store';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 import {TokenInterceptor} from "./store/auth-store/interceptors/token.interceptor";
+import {AuthStoreModule} from "./store/auth-store/auth-store.module";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {TokenInterceptor} from "./store/auth-store/interceptors/token.intercepto
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    AuthStoreModule,
   ],
   providers: [
     JwtHelperService,

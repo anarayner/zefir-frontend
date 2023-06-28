@@ -1,10 +1,11 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {initAuth, login, loginFailed, loginSuccess, logoutSuccess} from "./auth.actions";
-import {catchError, finalize, map, of, switchMap, tap} from "rxjs";
+import {extractLoginData, initAuth, login, loginFailed, loginSuccess, logout, logoutSuccess} from "./auth.actions";
+import {catchError, distinctUntilChanged, finalize, fromEvent, map, of, skip, switchMap, tap} from "rxjs";
 import {AuthService} from "../services/auth.service";
 import {AuthData} from "./auth.reducer";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthEffects {
@@ -21,6 +22,14 @@ export class AuthEffects {
     ))
   ))
 
+  logout$ = createEffect(() => this.actions$.pipe(
+    ofType(logout),
+    map(() => {
+      localStorage.removeItem('authData')
+      return logoutSuccess()
+    })
+  ))
+
   saveAuthDataToLocalStorage$ = createEffect(() => this.actions$.pipe(
     ofType(loginSuccess),
     tap((data ) => {
@@ -29,13 +38,12 @@ export class AuthEffects {
   ), { dispatch: false });
 
   extractLoginData$ = createEffect(() => this.actions$.pipe(
-    ofType(initAuth),
+    ofType(initAuth, extractLoginData),
     map(() => {
       const authDataString = localStorage.getItem('authData');
       if (!authDataString) {
         return logoutSuccess();
       }
-
       const authData: AuthData = JSON.parse(authDataString);
       const isTokenExpired = this.jwtHelper.isTokenExpired(authData.refreshToken)
       if(isTokenExpired){
@@ -45,6 +53,28 @@ export class AuthEffects {
     })
   ))
 
-  constructor(private actions$: Actions, private authService: AuthService, public jwtHelper: JwtHelperService
-    ) {}
+  listenStorageEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(initAuth),
+    switchMap(() => fromEvent(window, 'storage')),
+    map(() => extractLoginData())
+  ));
+
+  listenAuthEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(initAuth),
+    switchMap(() => this.authService.isAuth$),
+    distinctUntilChanged(),
+    skip(1),
+
+    tap(isAuthorized => {
+      console.log('isAuthorized', isAuthorized);
+      this.router.navigateByUrl(
+        isAuthorized ? '' : '/auth/login'
+      );
+    })
+
+  ), {dispatch: false})
+
+  constructor(private actions$: Actions, private authService: AuthService, public jwtHelper: JwtHelperService, private router: Router
+
+  ) {}
 }

@@ -21,7 +21,6 @@ import {AuthStoreModule} from "../../store/auth-store/auth-store.module";
   ],
   imports: [
     CommonModule,
-    AuthStoreModule,
     MatInputModule,
     MatCardModule,
     ReactiveFormsModule,

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import {isAuth} from "../../../../store/auth-store/store/auth.selectors";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-home-page',
@@ -17,6 +18,12 @@ export class HomePageComponent implements OnInit{
     });
   }
 
-  constructor(private store: Store) {
+  testProfile() {
+    this.httpClient.get('http://localhost:5000/users')
+      .subscribe(console.log);
+  }
+
+
+  constructor(private store: Store, private httpClient: HttpClient) {
   }
 }

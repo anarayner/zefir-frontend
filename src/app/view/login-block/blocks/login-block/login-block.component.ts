@@ -29,16 +29,6 @@ export class LoginBlockComponent implements OnInit{
     this.store.dispatch(login(value))
   }
 
-  testProfile() {
-    this.httpClient.get('http://localhost:5000/users')
-      .subscribe(console.log);
-  }
-
-  refresh() {
-    this.httpClient.get('http://localhost:5000/auth/refresh')
-      .subscribe(console.log);
-  }
-
   constructor(private store: Store, private httpClient: HttpClient) {
   }
 

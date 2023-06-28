@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomePageComponent } from './pages/home-page/home-page.component';
 import {RouterModule} from "@angular/router";
-import {HeaderBlockModule} from "../../view/header-block/header-block.module";
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
 
 
 
 @NgModule({
   declarations: [
-    HomePageComponent
+    CartPageComponent
   ],
   imports: [
     CommonModule,
@@ -16,10 +15,9 @@ import {HeaderBlockModule} from "../../view/header-block/header-block.module";
       {
         path: '',
         pathMatch: 'full',
-        component: HomePageComponent
+        component: CartPageComponent
       }
     ]),
-    HeaderBlockModule
   ]
 })
-export class HomeModule { }
+export class CartModule { }
