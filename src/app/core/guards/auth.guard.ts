@@ -1,8 +1,7 @@
 import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from '@angular/router';
 import {inject, Injectable} from "@angular/core";
-import {AuthService} from "../../store/auth-store/services/auth.service";
+import {AuthService} from "@store/auth-store/services/auth.service";
 import {combineLatest, map, Observable} from "rxjs";
-import {initAuth} from "../../store/auth-store/store/auth.actions";
 import {Store} from "@ngrx/store";
 
 @Injectable({
@@ -26,7 +25,7 @@ class PermissionsService {
         if(isAuth && isAuthLoaded){
           return true
         } else {
-          this.router.navigate(['/auth/login']).then()
+          this.router.navigate(['/login']).then()
           return false
         }
       })

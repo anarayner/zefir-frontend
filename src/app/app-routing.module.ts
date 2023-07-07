@@ -14,10 +14,18 @@ const routes: Routes = [
       )
   },
   {
-    path: 'auth',
+    path: 'login',
     loadChildren: () =>
-      import('./routing/auth/auth.module').then(
-        (m) => m.AuthModule
+      import('./routing/login/login.module').then(
+        (m) => m.LoginModule
+      ),
+    canActivate: [GuestGuard]
+  },
+  {
+    path: 'registration',
+    loadChildren: () =>
+      import('./routing/register/register.module').then(
+        (m) => m.RegisterModule
       ),
     canActivate: [GuestGuard]
   },

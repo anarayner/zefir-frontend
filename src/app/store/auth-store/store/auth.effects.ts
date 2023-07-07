@@ -68,7 +68,7 @@ export class AuthEffects {
     tap(isAuthorized => {
       console.log('isAuthorized', isAuthorized);
       this.router.navigateByUrl(
-        isAuthorized ? '' : '/auth/login'
+        isAuthorized ? '' : '/login'
       );
     })
 

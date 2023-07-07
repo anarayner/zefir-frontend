@@ -1,0 +1,51 @@
+:host{
+  display: flex;
+  justify-content: center;
+  margin: 100px 0;
+}
+
+mat-card{
+ width: 380px;
+}
+
+mat-card-title,
+mat-card-content,
+mat-form-field, a {
+  display: flex;
+  justify-content: center;
+}
+
+mat-form-field {
+  margin-top: 7px;
+}
+
+form {
+  width: 100%;
+}
+
+.title {
+  padding: 20px;
+}
+
+
+.button {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+a {
+  color: #656565;
+}
+
+
+input::placeholder {
+  font-size: 12px;
+}
+
+.names {
+  display: flex;
+  justify-content: space-between;
+}
+
+
