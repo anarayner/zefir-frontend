@@ -9,23 +9,25 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule} from '@ngrx/router-store';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
-import {TokenInterceptor} from "./store/auth-store/interceptors/token.interceptor";
-import {AuthStoreModule} from "./store/auth-store/auth-store.module";
+import {TokenInterceptor} from "@store/auth-store/interceptors/token.interceptor";
+import {AuthStoreModule} from "@store/auth-store/auth-store.module";
+import {HeaderBlockModule} from "@view/features/header-block/header-block.module";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     HttpClientModule,
     AuthStoreModule,
+    HeaderBlockModule,
   ],
   providers: [
     JwtHelperService,

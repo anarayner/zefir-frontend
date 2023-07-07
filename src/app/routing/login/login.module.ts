@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
 import {RouterModule} from "@angular/router";
+import {LoginPageComponent} from "@routing/login/login-page/login-page.component";
+import {LoginBlockModule} from "@view/features/login-block/login-block.module";
+
+
 
 @NgModule({
   declarations: [
-    ProfilePageComponent
+    LoginPageComponent
   ],
   imports: [
     CommonModule,
@@ -13,9 +16,10 @@ import {RouterModule} from "@angular/router";
       {
         path: '',
         pathMatch: 'full',
-        component: ProfilePageComponent
+        component: LoginPageComponent
       }
     ]),
+    LoginBlockModule,
   ]
 })
-export class ProfileModule { }
+export class LoginModule { }
