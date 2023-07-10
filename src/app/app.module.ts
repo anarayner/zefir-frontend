@@ -9,27 +9,28 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule} from '@ngrx/router-store';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
-import {TokenInterceptor} from "@store/auth-store/interceptors/token.interceptor";
-import {AuthStoreModule} from "@store/auth-store/auth-store.module";
-import {HeaderBlockModule} from "@view/features/header-block/header-block.module";
+import {TokenInterceptor} from "@app/auth/interceptors/token.interceptor";
+import {AuthStoreModule} from "@app/auth/auth-store.module";
+import {HeaderBlockComponent} from "@core/components/header/header-block.component";
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
-    EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot(),
-    HttpClientModule,
-    AuthStoreModule,
-    HeaderBlockModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        StoreModule.forRoot({}, {}),
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
+        EffectsModule.forRoot([]),
+        StoreRouterConnectingModule.forRoot(),
+        HttpClientModule,
+        AuthStoreModule,
+        HeaderBlockComponent,
+    ],
   providers: [
+
     JwtHelperService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
