@@ -1,0 +1,27 @@
+<header>
+  <div class="container">
+    <a routerLink="" class="logo">zefirka</a>
+    <nav>
+      <ul>
+        <li *ngIf="!(isAuth$ | async)">
+          <a routerLink="login">Войти</a>
+        </li>
+        <li *ngIf="isAuth$ | async" class="menu-container">
+          <a routerLink="/dashboard">Виктория</a>
+          <div class="menu">
+            <a routerLink="/profile">Профиль</a>
+            <a routerLink="/orders">Заказы</a>
+            <a (click)="onLogout()">Выйти</a>
+          </div>
+        </li>
+        <li *ngIf="isAuth$ | async">
+          <a routerLink="cart">
+            Cart <span>5</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
